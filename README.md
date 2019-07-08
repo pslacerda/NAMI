@@ -24,7 +24,7 @@ If Anaconda is installed on the system, an environment can be created to install
 ```bash
 conda create --name nami python=2.7
 conda activate nami
-conda install scipy=1.2.0 icu=56.1 pyqt=4 matplotlib=2.0.0b1
+conda install scipy=1.2.0 icu pyqt=4 matplotlib # or maybe icu=56.1 matplotlib=2.0.0b1
 
 # required by the StepOnePlus convert script
 conda install pandas=0.23.4 xlrd=1.2.0
@@ -37,6 +37,28 @@ conda activate nami
 python ./NAMI.py
 ```
 
+***Anaconda multi-user Windows install***
+
+For sharing an Anaconda environment between multiple users, ensure that Anaconda was installed system-wide with adminstrator privileges the environemnt and copy the environement to the `C:\Users\Public\AppData` folder. The environment to be copied probably is at `C:\Users\YourUser\Anaconda3\envs\nami`.
+
+These general tips can be used to share any Anaconda environement. If your computer is registred at some domain, call the support team.
+
+```bat
+@REM example file, place it into C:\Users\Default\Desktop\NAMI.bat
+call "C:\ProgramData\Anaconda3\Scripts\activate.bat" C:\Users\Public\AppData\nami
+python C:\Users\Default\AppData\nami\NAMI\NAMI.py
+```
+
+Or you may want:
+```bat
+@REM example file, place it into C:\Users\Default\Desktop\NAMI.bat
+@REM use it to run a specific conversion script right before start NAMI
+@REM drag the original file and drop over this script
+call "C:\ProgramData\Anaconda3\Scripts\activate.bat" C:\Users\Public\AppData\nami
+python C:\Users\Default\AppData\nami\NAMI\ConvertScripts\steponeplus_v2.2-to-NAMI.py %1
+cd %~dp1
+python C:\Users\Default\AppData\nami\NAMI\NAMI.py
+```
 
 **1.2 Linux**
 
